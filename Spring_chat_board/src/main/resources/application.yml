@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    active: local # 기본적으로 local이 선택된다는 뜻
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/sbs_exam_1?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: paul  
+    password: 1213
+  mvc:
+    view:
+      prefix: /WEB-INF/views/ 
+      suffix: .jsp
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: paul
+    password: eowjs042
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+---
+
+spring:
+  profiles: local
+server:
+  port: 8091
+
+---
+
+# 운영환경만의 설정
+spring:
+  profiles: production
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sbs_exam_1?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: paul
+    password: 1213
+server:
+  port: 8072
